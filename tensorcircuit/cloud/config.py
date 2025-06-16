@@ -1,1 +1,1 @@
-tencent_base_url = "https://quantum.tencent.com/cloud/quk/"
+qobody_base_url = os.environ.get('QBODY_BASE_URL', "http://localhost:8088/")

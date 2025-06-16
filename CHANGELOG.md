@@ -134,7 +134,7 @@
 
 ### Added
 
-- Cloud module for Tencent QCloud is now merged into the master branch and ready to release
+- Cloud module for Qobody QCloud is now merged into the master branch and ready to release
 
 - Add `tc.about()` to print related software versions and configs
 

@@ -414,7 +414,7 @@ msgstr ""
 #: ../../source/infras.rst:166
 msgid ""
 "Vendor specific implementation of functional API in, e.g., "
-":py:mod:`tensorcircuit.cloud.tencent`"
+":py:mod:`tensorcircuit.cloud.qobody`"
 msgstr ""
 
 #: ../../source/infras.rst:168

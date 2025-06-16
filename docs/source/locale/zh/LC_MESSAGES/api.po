@@ -594,7 +594,7 @@ msgstr ""
 #: tensorcircuit.cloud.apis.list_properties tensorcircuit.cloud.apis.list_tasks
 #: tensorcircuit.cloud.apis.resubmit_task tensorcircuit.cloud.apis.set_device
 #: tensorcircuit.cloud.apis.set_provider tensorcircuit.cloud.apis.set_token
-#: tensorcircuit.cloud.apis.submit_task tensorcircuit.cloud.tencent.submit_task
+#: tensorcircuit.cloud.apis.submit_task tensorcircuit.cloud.qobody.submit_task
 #: tensorcircuit.cloud.utils.set_proxy
 #: tensorcircuit.cloud.wrapper.batch_expectation_ps
 #: tensorcircuit.compiler.composed_compiler.DefaultCompiler.__init__
@@ -1545,7 +1545,7 @@ msgstr ""
 #: tensorcircuit.cloud.apis.list_providers tensorcircuit.cloud.apis.list_tasks
 #: tensorcircuit.cloud.apis.resubmit_task tensorcircuit.cloud.apis.set_device
 #: tensorcircuit.cloud.apis.set_provider tensorcircuit.cloud.apis.set_token
-#: tensorcircuit.cloud.apis.submit_task tensorcircuit.cloud.tencent.submit_task
+#: tensorcircuit.cloud.apis.submit_task tensorcircuit.cloud.qobody.submit_task
 #: tensorcircuit.cloud.utils.set_proxy
 #: tensorcircuit.cloud.wrapper.batch_expectation_ps
 #: tensorcircuit.compiler.qiskit_compiler.qiskit_compile
@@ -2333,7 +2333,7 @@ msgstr ""
 #: tensorcircuit.cloud.apis.list_providers tensorcircuit.cloud.apis.list_tasks
 #: tensorcircuit.cloud.apis.resubmit_task tensorcircuit.cloud.apis.set_device
 #: tensorcircuit.cloud.apis.set_provider tensorcircuit.cloud.apis.set_token
-#: tensorcircuit.cloud.apis.submit_task tensorcircuit.cloud.tencent.submit_task
+#: tensorcircuit.cloud.apis.submit_task tensorcircuit.cloud.qobody.submit_task
 #: tensorcircuit.cloud.wrapper.batch_expectation_ps
 #: tensorcircuit.compiler.qiskit_compiler.qiskit_compile
 #: tensorcircuit.cons.get_contractor tensorcircuit.cons.get_dtype
@@ -8324,8 +8324,8 @@ msgstr ""
 #: tensorcircuit.cloud.abstraction.Device.list_properties:3
 #: tensorcircuit.cloud.abstraction.Device.topology:3
 #: tensorcircuit.cloud.abstraction.Device.topology_graph:5
-#: tensorcircuit.cloud.tencent.submit_task:6
-#: tensorcircuit.cloud.tencent.submit_task:8 tensorcircuit.quantum.count_d2s:10
+#: tensorcircuit.cloud.qobody.submit_task:6
+#: tensorcircuit.cloud.qobody.submit_task:8 tensorcircuit.quantum.count_d2s:10
 #: tensorcircuit.quantum.count_d2s:14 tensorcircuit.quantum.count_s2d:4
 #: tensorcircuit.quantum.count_s2d:8
 #: tensorcircuit.simplify.pseudo_contract_between:3
@@ -14487,7 +14487,7 @@ msgid "[description], defaults to False"
 msgstr ""
 
 #: of tensorcircuit.cloud.abstraction.Provider:1
-msgid "Provider abstraction for cloud connection, eg. \"tencent\", \"local\""
+msgid "Provider abstraction for cloud connection, eg. \"qobody\", \"local\""
 msgstr ""
 
 #: of tensorcircuit.cloud.abstraction.TCException:1
@@ -14693,14 +14693,14 @@ msgid "submit task to the cloud platform, batch submission default enabled"
 msgstr ""
 
 #: of tensorcircuit.cloud.apis.submit_task:5
-msgid ":py:meth:`tensorcircuit.cloud.tencent.submit_task`"
+msgid ":py:meth:`tensorcircuit.cloud.qobody.submit_task`"
 msgstr ""
 
 #: of tensorcircuit.cloud.apis.submit_task:13
 msgid ""
 "all necessary keywords arguments for task submission, see detailed API in"
-" each provider backend: 1. tencent - "
-":py:meth:`tensorcircuit.cloud.tencent.submit_task`"
+" each provider backend: 1. qobody - "
+":py:meth:`tensorcircuit.cloud.qobody.submit_task`"
 msgstr ""
 
 #: of tensorcircuit.cloud.apis.submit_task:17
@@ -14723,86 +14723,86 @@ msgstr ""
 msgid "tensorcircuit.cloud.quafu_provider"
 msgstr ""
 
-#: ../../source/api/cloud/tencent.rst:2
-msgid "tensorcircuit.cloud.tencent"
+#: ../../source/api/cloud/qobody.rst:2
+msgid "tensorcircuit.cloud.qobody"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent:1
-msgid "Cloud provider from Tencent"
+#: of tensorcircuit.cloud.qobody:1
+msgid "Cloud provider from Qobody"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:1
+#: of tensorcircuit.cloud.qobody.submit_task:1
 msgid ""
-"Submit task via tencent provider, we suggest to enable one of the "
+"Submit task via qobody provider, we suggest to enable one of the "
 "compiling functionality: either in tc: frontend or in qos: backend. If "
 "both are enabled, try on your own risk, some qubit mapping may fail "
 "silently. If the user directly provide ``source`` or qiskit Circuit in "
 "``circuit``, the qubit mapping should be taken care of by the users."
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:10
+#: of tensorcircuit.cloud.qobody.submit_task:10
 msgid "language choice for ``source``, defaults to \"OPENQASM\""
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:12
+#: of tensorcircuit.cloud.qobody.submit_task:12
 msgid "number of measurement shots, defaults to 1024"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:14
+#: of tensorcircuit.cloud.qobody.submit_task:14
 msgid "submit task protocol version, defaults to \"1\""
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:16
+#: of tensorcircuit.cloud.qobody.submit_task:16
 msgid "priority for the task queue, defaults to 1"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:18
+#: of tensorcircuit.cloud.qobody.submit_task:18
 msgid "tensorcircuit or qiskit circuit object, defaults to None"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:20
+#: of tensorcircuit.cloud.qobody.submit_task:20
 msgid "directly given circuit representation, defaults to None"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:22
+#: of tensorcircuit.cloud.qobody.submit_task:22
 msgid "remarks on the task, defaults to None"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:24
+#: of tensorcircuit.cloud.qobody.submit_task:24
 msgid "whether compiling in tc via qiskit compiling system, defaults to False"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:27
+#: of tensorcircuit.cloud.qobody.submit_task:27
 msgid "alias for the argument ``compiling``"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:29
+#: of tensorcircuit.cloud.qobody.submit_task:29
 msgid "compiling options for qiskit ``transpile`` method, defaults to None"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:32
+#: of tensorcircuit.cloud.qobody.submit_task:32
 msgid "alias for the argument ``compiled_options``"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:34
+#: of tensorcircuit.cloud.qobody.submit_task:34
 msgid "whether to insert swap if necessary in qos, defaults to True"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:36
+#: of tensorcircuit.cloud.qobody.submit_task:36
 msgid "whether to compile the gate in qos, defaults to True"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:38
+#: of tensorcircuit.cloud.qobody.submit_task:38
 msgid "whether to run an initial qubit mapping in qos, defaults to False"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:41
+#: of tensorcircuit.cloud.qobody.submit_task:41
 msgid ""
 "when dry run, only compiled circuit is returned (no real circuit "
 "execution), defaults to False"
 msgstr ""
 
-#: of tensorcircuit.cloud.tencent.submit_task:44
+#: of tensorcircuit.cloud.qobody.submit_task:44
 msgid "Task object or List of Task for batch submission"
 msgstr ""
 
@@ -14911,14 +14911,14 @@ msgstr ""
 
 #: of tensorcircuit.compiler.composed_compiler.DefaultCompiler.__init__:1
 msgid ""
-"A fallback choice to compile circuit running on tencent quantum cloud "
+"A fallback choice to compile circuit running on qobody quantum cloud "
 "with rz as native gate"
 msgstr ""
 
 #: of tensorcircuit.compiler.composed_compiler.DefaultCompiler.__init__:3
 msgid ""
 "qiskit compiled options to be added options documented in "
-"`qiskit.transpile` method, to use tencent quantum cloud, "
+"`qiskit.transpile` method, to use qobody quantum cloud, "
 "`{\"coupling_map\": d.topology()}` is in general enough, where d is a "
 "device object, defaults to None, i.e. no qubit mapping is applied"
 msgstr ""

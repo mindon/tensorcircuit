@@ -52,11 +52,11 @@ class Compiler:
 class DefaultCompiler(Compiler):
     def __init__(self, qiskit_compiled_options: Optional[Dict[str, Any]] = None):
         """
-        A fallback choice to compile circuit running on tencent quantum cloud with rz as native gate
+        A fallback choice to compile circuit running on qobody quantum cloud with rz as native gate
 
         :param qiskit_compiled_options: qiskit compiled options to be added
             options documented in `qiskit.transpile` method,
-            to use tencent quantum cloud, `{"coupling_map": d.topology()}` is in general enough,
+            to use qobody quantum cloud, `{"coupling_map": d.topology()}` is in general enough,
             where d is a device object,
             defaults to None, i.e. no qubit mapping is applied
         :type qiskit_compiled_options: Optional[Dict[str, Any]], optional

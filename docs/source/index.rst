@@ -99,9 +99,9 @@ If you have any further questions or collaboration ideas, please use the issue t
 
 
    .. card:: Cloud
-      :link: https://quantum.tencent.com/cloud
+      :link: http://localhost:8088
 
-      Tencent Quantum Cloud
+      Qobody Quantum Cloud
 
 
 
@@ -123,7 +123,7 @@ If you have any further questions or collaboration ideas, please use the issue t
 
    * Research and projects based on TensorCircuit: https://github.com/tencent-quantum-lab/tensorcircuit#research-and-applications
 
-   * Tencent Quantum Cloud Service: https://quantum.tencent.com/cloud/
+   * Qobody Quantum Cloud Service: http://localhost:8088/
 
 
 

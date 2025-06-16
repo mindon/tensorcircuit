@@ -18,8 +18,8 @@ if "TC_CLOUD_TEST" not in os.environ:
 
 
 def test_get_token():
-    print(apis.get_token(provider="Tencent"))
-    p = apis.get_provider("tencent")
+    print(apis.get_token(provider="qobody"))
+    p = apis.get_provider("qobody")
     print(p.get_token())
     print(p.get_device("simulator:tc").get_token())
 
@@ -32,19 +32,19 @@ def test_list_devices():
 
 
 def test_get_device():
-    d1 = apis.get_device(device="tencent::hello")
+    d1 = apis.get_device(device="qobody::hello")
     assert d1.name == "hello"
-    assert d1.provider.name == "tencent"
+    assert d1.provider.name == "qobody"
     d2 = apis.get_device(device="hello")
     assert d2.name == "hello"
-    assert d2.provider.name == "tencent"
+    assert d2.provider.name == "qobody"
     p = apis.get_provider()
-    d3 = p.get_device("tencent::hello")
+    d3 = p.get_device("qobody::hello")
     assert d3.name == "hello"
-    assert d3.provider.name == "tencent"
+    assert d3.provider.name == "qobody"
     d4 = p.get_device("hello")
     assert d4.name == "hello"
-    assert d4.provider.name == "tencent"
+    assert d4.provider.name == "qobody"
 
 
 def test_get_device_cache():
@@ -54,9 +54,9 @@ def test_get_device_cache():
     d3 = apis.get_device("testing")
     assert id(d1) == id(d2)
     assert id(d3) == id(d1)
-    apis.set_provider("tencent")
+    apis.set_provider("qobody")
     d4 = apis.get_device("testing")
-    assert d4.provider.name == "tencent"
+    assert d4.provider.name == "qobody"
     assert id(d4) != id(d1)
 
 
@@ -98,7 +98,7 @@ def test_get_task():
     t = apis.submit_task(circuit=c)
     t1 = apis.get_task(t.id_)
     assert t1.id_ == t.id_
-    t2 = apis.get_device("tencent::simulator:tcn1").get_task(t.id_)
+    t2 = apis.get_device("qobody::simulator:tcn1").get_task(t.id_)
     assert t2.id_ == t.id_
 
     apis.set_device()
@@ -144,7 +144,7 @@ def test_local_batch_submit():
     ts = apis.submit_task(circuit=[c, c])
     print(ts[1].results())
     print(ts[1].details())
-    apis.set_provider("tencent")
+    apis.set_provider("qobody")
 
 
 def test_batch_exp_ps():

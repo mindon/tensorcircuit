@@ -16,9 +16,9 @@ logger = logging.getLogger(__name__)
 
 
 try:
-    from . import tencent  # type: ignore
+    from . import qobody  # type: ignore
 except (ImportError, ModuleNotFoundError):
-    logger.warning("fail to load cloud provider module: tencent")
+    logger.warning("fail to load cloud provider module: qobody")
 
 try:
     from . import local
@@ -35,8 +35,8 @@ package_name = "tensorcircuit"
 thismodule = sys.modules[__name__]
 
 
-default_provider = Provider.from_name("tencent")
-avail_providers = ["tencent", "local"]
+default_provider = Provider.from_name("qobody")
+avail_providers = ["qobody", "local"]
 
 
 def list_providers() -> List[Provider]:
@@ -76,7 +76,7 @@ def set_provider(
 set_provider()
 get_provider = partial(set_provider, set_global=False)
 
-default_device = Device.from_name("tencent::simulator:tc")
+default_device = Device.from_name("qobody::simulator:tc")
 
 
 def set_device(
@@ -276,7 +276,7 @@ def get_token(
 
 
 # token json structure
-# {"tencent::": token1, "tencent::20xmon":  token2}
+# {"qobody::": token1, "qobody::20xmon":  token2}
 
 
 def list_devices(
@@ -299,8 +299,8 @@ def list_devices(
     provider = Provider.from_name(provider)
     if token is None:
         token = provider.get_token()
-    if provider.name == "tencent":
-        return tencent.list_devices(token, **kws)  # type: ignore
+    if provider.name == "qobody":
+        return qobody.list_devices(token, **kws)  # type: ignore
     elif provider.name == "local":
         return local.list_devices(token, **kws)
     else:
@@ -335,8 +335,8 @@ def list_properties(
 
     if token is None:
         token = device.get_token()  # type: ignore
-    if provider.name == "tencent":  # type: ignore
-        return tencent.list_properties(device, token)  # type: ignore
+    if provider.name == "qobody":  # type: ignore
+        return qobody.list_properties(device, token)  # type: ignore
     elif provider.name == "local":
         raise ValueError("Unsupported method for local backend")
     else:
@@ -398,8 +398,8 @@ def get_task_details(
         token = device.get_token()
     provider = device.provider
 
-    if provider.name == "tencent":
-        return tencent.get_task_details(task, device, token, prettify)  # type: ignore
+    if provider.name == "qobody":
+        return qobody.get_task_details(task, device, token, prettify)  # type: ignore
     elif provider.name == "local":
         return local.get_task_details(task, device, token, prettify)  # type: ignore
     elif provider.name == "quafu":
@@ -420,7 +420,7 @@ def submit_task(
 
     .. seealso::
 
-        :py:meth:`tensorcircuit.cloud.tencent.submit_task`
+        :py:meth:`tensorcircuit.cloud.qobody.submit_task`
 
     :param provider: _description_, defaults to None
     :type provider: Optional[Union[str, Provider]], optional
@@ -430,7 +430,7 @@ def submit_task(
     :type token: Optional[str], optional
     :param task_kws: all necessary keywords arguments for task submission,
         see detailed API in each provider backend:
-        1. tencent - :py:meth:`tensorcircuit.cloud.tencent.submit_task`
+        1. qobody - :py:meth:`tensorcircuit.cloud.qobody.submit_task`
     :type task_kws: Any
     :return: The task object
     :rtype: List[Task]
@@ -450,8 +450,8 @@ def submit_task(
 
     if token is None:
         token = device.get_token()  # type: ignore
-    if provider.name == "tencent":  # type: ignore
-        return tencent.submit_task(device, token, **task_kws)  # type: ignore
+    if provider.name == "qobody":  # type: ignore
+        return qobody.submit_task(device, token, **task_kws)  # type: ignore
     elif provider.name == "local":  # type: ignore
         return local.submit_task(device, token, **task_kws)  # type: ignore
     elif provider.name == "quafu":  # type: ignore
@@ -481,8 +481,8 @@ def resubmit_task(
         token = device.get_token()
     provider = device.provider
 
-    if provider.name == "tencent":  # type: ignore
-        return tencent.resubmit_task(task, token)  # type: ignore
+    if provider.name == "qobody":  # type: ignore
+        return qobody.resubmit_task(task, token)  # type: ignore
     elif provider.name == "local":
         raise ValueError("Unsupported method for local backend")
     else:
@@ -500,8 +500,8 @@ def remove_task(
         token = device.get_token()
     provider = device.provider
 
-    if provider.name == "tencent":  # type: ignore
-        return tencent.remove_task(task, token)  # type: ignore
+    if provider.name == "qobody":  # type: ignore
+        return qobody.remove_task(task, token)  # type: ignore
     elif provider.name == "local":
         raise ValueError("Unsupported method for local backend")
     else:
@@ -533,8 +533,8 @@ def list_tasks(
         token = provider.get_token()  # type: ignore
     if device is not None:
         device = Device.from_name(device)
-    if provider.name == "tencent":  # type: ignore
-        return tencent.list_tasks(device, token, **filter_kws)  # type: ignore
+    if provider.name == "qobody":  # type: ignore
+        return qobody.list_tasks(device, token, **filter_kws)  # type: ignore
     elif provider.name == "local":  # type: ignore
         return local.list_tasks(device, token, **filter_kws)  # type: ignore
     else:

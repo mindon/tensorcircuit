@@ -6,6 +6,6 @@ tensorcircuit.cloud
     cloud/config.rst
     cloud/local.rst
     cloud/quafu_provider.rst
-    cloud/tencent.rst
+    cloud/qobody.rst
     cloud/utils.rst
     cloud/wrapper.rst

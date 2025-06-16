@@ -43,7 +43,7 @@ class TaskFailed(TaskException):
 
 class Provider:
     """
-    Provider abstraction for cloud connection, eg. "tencent", "local"
+    Provider abstraction for cloud connection, eg. "qobody", "local"
     """
 
     activated_providers: Dict[str, "Provider"] = {}
@@ -59,9 +59,9 @@ class Provider:
     __repr__ = __str__
 
     @classmethod
-    def from_name(cls, provider: Union[str, "Provider"] = "tencent") -> "Provider":
+    def from_name(cls, provider: Union[str, "Provider"] = "qobody") -> "Provider":
         if provider is None:
-            provider = "tencent"
+            provider = "qobody"
         if isinstance(provider, cls):
             p = provider
         elif isinstance(provider, str):
@@ -435,8 +435,8 @@ class Task:
 
         # mitigated is True:
         device = self.get_device()
-        if device.provider.name != "tencent":
-            raise ValueError("Only tencent provider supports auto readout mitigation")
+        if device.provider.name != "qobody":
+            raise ValueError("Only qobody provider supports auto readout mitigation")
         if readout_mit is None and getattr(device, "readout_mit", None) is None:
 
             def run(cs: Any, shots: Any) -> Any:

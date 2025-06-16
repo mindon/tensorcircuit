@@ -179,8 +179,8 @@ msgid "Cloud"
 msgstr "量子云"
 
 #: ../../source/index.rst:104
-msgid "Tencent Quantum Cloud"
-msgstr "腾讯量子云平台"
+msgid "Qobody Quantum Cloud"
+msgstr "Qobody量子云平台"
 
 #: ../../source/index.rst:131
 msgid "Unified Quantum Programming"
@@ -352,8 +352,8 @@ msgstr ":ref:`search`"
 #~ "基于 TensorCircuit 的研究和项目: https://github.com/tencent-quantum-lab/"
 #~ "tensorcircuit#research-and-applications"
 
-#~ msgid "Tencent Quantum Cloud Service: https://quantum.tencent.com/cloud/"
-#~ msgstr "腾讯量子云服务: https://quantum.tencent.com/cloud/"
+#~ msgid "Qobody Quantum Cloud Service: http://localhost:8088"
+#~ msgstr "Qobody量子云服务: http://localhost:8088"
 
 #~ msgid "Research based on TC"
 #~ msgstr "基于 TC 的研究项目"

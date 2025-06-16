@@ -1,6 +1,6 @@
-tensorcircuit.cloud.tencent
+tensorcircuit.cloud.qobody
 ================================================================================
-.. automodule:: tensorcircuit.cloud.tencent
+.. automodule:: tensorcircuit.cloud.qobody
     :members:
     :undoc-members:
     :show-inheritance:

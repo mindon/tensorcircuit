@@ -163,7 +163,7 @@ Quantum Cloud SDK: Layerwise API design
 
 From lower level to higher level, a view of API layers invoking QPU calls
 
-- Vendor specific implementation of functional API in, e.g., :py:mod:`tensorcircuit.cloud.tencent`
+- Vendor specific implementation of functional API in, e.g., :py:mod:`tensorcircuit.cloud.qobody`
 
 - Provider agnostic functional lower level API for task/device management in :py:mod:`tensorcircuit.cloud.apis`
 

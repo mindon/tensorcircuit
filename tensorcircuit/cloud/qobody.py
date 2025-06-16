@@ -1,14 +1,14 @@
 """
-Cloud provider from Tencent
+Cloud provider from Qobody
 """
 
 from typing import Any, Dict, List, Optional, Sequence, Union
 from datetime import datetime
 from json import dumps
-import logging
+import logging, os
 from functools import partial
 
-from .config import tencent_base_url
+from .config import qobody_base_url
 from .utils import rpost_json
 from .abstraction import Device, sep, Task
 from ..abstractcircuit import AbstractCircuit
@@ -19,7 +19,7 @@ from ..translation import eqasm2tc
 logger = logging.getLogger(__name__)
 
 
-def tencent_headers(token: Optional[str] = None) -> Dict[str, str]:
+def qobody_headers(token: Optional[str] = None) -> Dict[str, str]:
     if token is None:
         token = "ANY;0"
     headers = {"Authorization": "Bearer " + token}
@@ -37,20 +37,20 @@ def error_handling(r: Dict[str, Any]) -> Dict[str, Any]:
 def list_devices(token: Optional[str] = None, **kws: Any) -> List[Device]:
     json: Dict[Any, Any] = kws
     r = rpost_json(
-        tencent_base_url + "device/find", json=json, headers=tencent_headers(token)
+        qobody_base_url + "device/find", json=json, headers=qobody_headers(token)
     )
     r = error_handling(r)
     ds = r["devices"]
     rs = []
     for d in ds:
-        rs.append(Device.from_name("tencent" + sep + d["id"]))
+        rs.append(Device.from_name("qobody" + sep + d["id"]))
     return rs
 
 
 def list_properties(device: Device, token: Optional[str] = None) -> Dict[str, Any]:
     json = {"id": device.name}
     r = rpost_json(
-        tencent_base_url + "device/detail", json=json, headers=tencent_headers(token)
+        qobody_base_url + "device/detail", json=json, headers=qobody_headers(token)
     )
     r = error_handling(r)
     if "device" in r:
@@ -125,6 +125,7 @@ def submit_task(
     source: Optional[Union[str, Sequence[str]]] = None,
     remarks: Optional[str] = None,
     group: Optional[str] = None,
+    tags: Optional[str] = None,
     compiling: bool = False,
     compiled_options: Optional[Dict[str, Any]] = None,
     enable_qiskit_initial_mapping: bool = False,
@@ -136,7 +137,7 @@ def submit_task(
     **kws: Any
 ) -> List[Task]:
     """
-    Submit task via tencent provider, we suggest to enable one of the compiling functionality:
+    Submit task via qobody provider, we suggest to enable one of the compiling functionality:
     either in tc: frontend or in qos: backend. If both are enabled, try on your own risk, some
     qubit mapping may fail silently. If the user directly provide ``source`` or qiskit Circuit in ``circuit``,
     the qubit mapping should be taken care of by the users.
@@ -247,6 +248,11 @@ def submit_task(
     if qos_dry_run:
         device_str += "&dry"
 
+    if group is None:
+        group = os.environ.get('QOBODY_TASK_GROUP', '')
+    if tags is None:
+        tags = os.environ.get('QOBODY_TASK_TAGS', '')
+
     if is_sequence(source):
         # batched mode
         json = []
@@ -263,6 +269,7 @@ def submit_task(
                     "prior": prior,
                     "remarks": remarks,
                     "group": group,
+                    "tags": tags,
                 }
             )
 
@@ -276,9 +283,10 @@ def submit_task(
             "prior": prior,
             "remarks": remarks,
             "group": group,
+            "tags": tags,
         }
     r = rpost_json(
-        tencent_base_url + "task/submit", json=json, headers=tencent_headers(token)
+        qobody_base_url + "task/submit", json=json, headers=qobody_headers(token)
     )
     r = error_handling(r)
     rtn = []
@@ -303,7 +311,7 @@ def resubmit_task(task: Task, token: str) -> Task:
     # TODO(@refraction-ray): batch resubmit
     json = {"id": task.id_}
     r = rpost_json(
-        tencent_base_url + "task/start", json=json, headers=tencent_headers(token)
+        qobody_base_url + "task/start", json=json, headers=qobody_headers(token)
     )
     r = error_handling(r)
     try:
@@ -317,7 +325,7 @@ def remove_task(task: Task, token: str) -> Any:
     # TODO(@refraction-ray): batch cancel
     json = {"id": task.id_}
     r = rpost_json(
-        tencent_base_url + "task/remove", json=json, headers=tencent_headers(token)
+        qobody_base_url + "task/remove", json=json, headers=qobody_headers(token)
     )
     r = error_handling(r)
     return r
@@ -328,9 +336,9 @@ def list_tasks(device: Device, token: str, **filter_kws: Any) -> List[Task]:
     if device is not None:
         json["device"] = device.name
     r = rpost_json(
-        tencent_base_url + "task/find?pn=1&npp=50",
+        qobody_base_url + "task/find?pn=1&npp=50",
         json=json,
-        headers=tencent_headers(token),
+        headers=qobody_headers(token),
     )
     r = error_handling(r)
     try:
@@ -339,7 +347,7 @@ def list_tasks(device: Device, token: str, **filter_kws: Any) -> List[Task]:
             rtn.append(
                 Task(
                     id_=t["id"],
-                    device=Device.from_name("tencent" + sep + t["device"]),
+                    device=Device.from_name("qobody" + sep + t["device"]),
                 )
             )
         return rtn
@@ -352,7 +360,7 @@ def get_task_details(
 ) -> Dict[str, Any]:
     json = {"id": task.id_}
     r = rpost_json(
-        tencent_base_url + "task/detail", json=json, headers=tencent_headers(token)
+        qobody_base_url + "task/detail", json=json, headers=qobody_headers(token)
     )
     r = error_handling(r)
     try:

@@ -170,7 +170,7 @@ def batch_expectation_ps(
         c.x(1)
         tc.cloud.wrapper.batch_expectation_ps(c, [[1, 0], [0, 3]], device=None)
         # array([ 0.99999994, -0.99999994], dtype=float32)
-        tc.cloud.wrapper.batch_expectation_ps(c, [[1, 0], [0, 3]], device="tencent::9gmon")
+        tc.cloud.wrapper.batch_expectation_ps(c, [[1, 0], [0, 3]], device="qobody::9gmon")
         # array([ 1.03093477, -1.11715944])
 
     :param c: The target circuit to compute expectation
@@ -298,7 +298,7 @@ def batch_expectation_ps(
     if with_rem:
         if getattr(device, "readout_mit", None) is None:
             mit = ReadoutMit(run)
-            # TODO(@refraction-ray) only work for tencent provider
+            # TODO(@refraction-ray) only work for qobody provider
             nq = device.list_properties().get("qubits", None)
             if nq is None:
                 nq = c._nqubits
