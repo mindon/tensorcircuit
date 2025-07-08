@@ -289,22 +289,25 @@ def submit_task(
         qobody_base_url + "task/submit", json=json, headers=qobody_headers(token)
     )
     r = error_handling(r)
-    rtn = []
-    for t in r["tasks"]:
-        if "err" in t or "id" not in t:
-            if "err" in t:
-                logger.warning(t["err"])
+    try:
+        rtn = []
+        for t in r["tasks"]:
+            if "err" in t or "id" not in t:
+                if "err" in t:
+                    logger.warning(t["err"])
+                else:
+                    logger.warning("unsuccessful submission of the task:\n" + dumps(r))
             else:
-                logger.warning("unsuccessful submission of the task:\n" + dumps(r))
+                ti = Task(id_=t["id"], device=device)
+                rtn.append(ti)
+        if not is_sequence(source):
+            return rtn[0]  # type: ignore
+        elif len(rtn) == 0:
+            raise ValueError("All tasks submitted failed")
         else:
-            ti = Task(id_=t["id"], device=device)
-            rtn.append(ti)
-    if not is_sequence(source):
-        return rtn[0]  # type: ignore
-    elif len(rtn) == 0:
-        raise ValueError("All tasks submitted failed")
-    else:
-        return rtn
+            return rtn
+    except KeyError:
+        raise ValueError(dumps(r))
 
 
 def resubmit_task(task: Task, token: str) -> Task:
