@@ -14,15 +14,15 @@ shots_const = 1000
 
 print("✅ TEST FILE LOADED")
 set_token("")
-set_provider("tencent")
+set_provider("qobody")
 ds = list_devices()
 print(ds)
 
 # TQASM 0.2;
 # QREG a[1];
 # defcal rabi_test a {
-# frame drive_frame = newframe(a); 
-# play(drive_frame, cosine_drag($formatted_t, 0.2, 0.0, 0.0)); } 
+# frame drive_frame = newframe(a);
+# play(drive_frame, cosine_drag($formatted_t, 0.2, 0.0, 0.0)); }
 # rabi_test a[0];
 # MEASZ a[0];
 
@@ -36,8 +36,8 @@ def gen_parametric_waveform_circuit(t):
     builder.play("drive_frame", waveforms.CosineDrag(t, 0.2, 0.0, 0.0))
 
     builder.build()
-    qc.add_calibration('rabi_test', ['q[0]']) 
-    
+    qc.add_calibration('rabi_test', ['q[0]'])
+
     tqasm_code = qc.to_tqasm()
 
     print(tqasm_code)
@@ -45,7 +45,7 @@ def gen_parametric_waveform_circuit(t):
 
 
 def run_circuit(qc):
-    device_name = "tianji_m2" 
+    device_name = "tianji_m2"
     d = get_device(device_name)
     t = submit_task(
     circuit=qc,
@@ -76,14 +76,14 @@ def draw_rabi(result_lst):
         '0': [],
         '1': []
     }
-    
+
     for result in result_lst:
         data['0'].append(int(result['0']) / shots_const)
         data['1'].append(int(result['1']) / shots_const)
         data['duration'].append(result['duration'])
 
 
-        
+
 
     plt.figure(figsize=(10,6))
     plt.plot(data['duration'], data['0'], 'b-o', label='State |0>')

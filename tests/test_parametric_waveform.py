@@ -10,8 +10,8 @@ from tensorcircuit.cloud.apis import submit_task, get_device, set_provider, set_
 import re
 
 print("✅ TEST FILE LOADED")
-set_token("xu1LTrkf0nP6sI8oh.bDPdk35RlOQZYy9hQPU6jK2J4d5AdINAOszCNPxTNGZ3-opBPhWcLcruYuSrvX8is1D9tKgw-O4Zg.Qf7fLp83AtSPP19jD6Na4piICkygomdfyxIjzhO6Zu-s5hgBu2709ZW=")
-set_provider("tencent")
+set_token("")
+set_provider("qobody")
 ds = list_devices()
 print(ds)
 
@@ -41,8 +41,8 @@ def test_parametric_waveform():
     assert re.search(r"defcal my_gate [^\)]* \s*\{", tqasm_code)
     
     
-    #tc.cloud.apis.set_token("xu1LTrkf0nP6sI8oh.bDPdk35RlOQZYy9hQPU6jK2J4d5AdINAOszCNPxTNGZ3-opBPhWcLcruYuSrvX8is1D9tKgw-O4Zg.Qf7fLp83AtSPP19jD6Na4piICkygomdfyxIjzhO6Zu-s5hgBu2709ZW=")
-    #tc.cloud.apis.set_provider("tencent")
+    #tc.cloud.apis.set_token("")
+    #tc.cloud.apis.set_provider("qobody")
     device_name = "tianji_m2" 
     d = get_device(device_name)
     t = submit_task(
